@@ -1,0 +1,102 @@
+[
+  {
+    "id": 0,
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/019591c69fac7921a27e4ecd8c99f9df.avif",
+    "title": "Пепперони Фреш с перцем",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 550,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 1,
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11ee7d612a1c13cbbfcc286c332d7762.avif",
+    "title": "Сырная",
+    "types": [0],
+    "sizes": [26, 40],
+    "price": 529,
+    "category": 1,
+    "rating": 6
+  },
+  {
+    "id": 2,
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/019591b642d87304a62d322945990861.avif",
+    "title": "Креветка и Песто ",
+    "types": [0],
+    "sizes": [26, 30, 40],
+    "price": 609,
+    "category": 2,
+    "rating": 5
+  },
+  {
+    "id": 3,
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/0195ca1dcb2f7341b78534772343b047.avif",
+    "title": "Креветки блю чиз",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 649,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 4,
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11ef5b10b39bbbbda9f8c4e4ff1b067c.avif",
+    "title": "Ветчина и грибы",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 820,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 5,
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11ee7d614cbe0530b7234b6d7a6e5f8e.avif",
+    "title": "Двойной цыпленок",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 440,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 6,
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/019591c69fac7921a27e4ecd8c99f9df.avif",
+    "title": "Сырная",
+    "types": [0],
+    "sizes": [26, 40],
+    "price": 345,
+    "category": 1,
+    "rating": 6
+  },
+  {
+    "id": 7,
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/01953ced168c758399984df8561623a3.avif",
+    "title": "Бефстроганов",
+    "types": [0],
+    "sizes": [26, 30, 40],
+    "price": 530,
+    "category": 2,
+    "rating": 5
+  },
+  {
+    "id": 8,
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/019591a0591d7642b97bf6ed6da45252.avif",
+    "title": "Аррива",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 620,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 9,
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/019591b13a1a724b90092c16d9b1c05a.avif",
+    "title": "Карбонара ",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 800,
+    "category": 0,
+    "rating": 4
+  }
+]

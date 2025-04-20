@@ -1,11 +1,21 @@
 import React, { useState } from "react";
 
-function PizzaBlock({ title, price, imageUrl }) {
+function PizzaBlock({ title, price, imageUrl, sizes, types }) {
   const [countPizza, setCountPizza] = useState(0);
+  const [activeSize, setActiveSize] = useState(0);
+  const [activeParam, setActiveParam] = useState(0);
 
   function addPizza() {
     setCountPizza(countPizza + 1);
   }
+  function takeSize(index) {
+    setActiveSize(index);
+  }
+  function takeParam(index) {
+    setActiveParam(index);
+  }
+
+  const typesName = ["тонкое", "традиционное"];
 
   return (
     <div className="pizza-block">
@@ -13,13 +23,33 @@ function PizzaBlock({ title, price, imageUrl }) {
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
-          <li className="active">тонкое</li>
-          <li>традиционное</li>
+          {types.map((type, i) => (
+            <li
+              key={i}
+              onClick={() => takeParam(i)}
+              className={activeParam === i ? "active" : ""}
+            >
+              {typesName[type]}
+            </li>
+          ))}
+          {/* <li className="active">тонкое</li>
+          <li>традиционное</li> */}
         </ul>
         <ul>
-          <li className="active">26 см.</li>
+          {sizes.map((size, i) => (
+            <li
+              key={i}
+              className={activeSize === i ? "active" : ""}
+              onClick={() => {
+                takeSize(i);
+              }}
+            >
+              {size} см.
+            </li>
+          ))}
+          {/* <li className="active">26 см.</li>
           <li>30 см.</li>
-          <li>40 см.</li>
+          <li>40 см.</li> */}
         </ul>
       </div>
       <div className="pizza-block__bottom">
