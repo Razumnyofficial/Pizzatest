@@ -1,41 +1,28 @@
-import "./scss/app.scss";
-import Header from "./components/Header";
-import Categories from "./components/Categories";
-import Sort from "./components/Sort";
-import PizzaBlock from "./components/PizzaBlock";
+import React from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import pizzas from "./assets/pizza.json";
-console.log(pizzas);
+import HeaderPage from "./pages/HeaderPage";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart.jsx";
+import ErrorPage from "./pages/Error.jsx";
+
+import "./scss/app.scss";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HeaderPage />,
+    // errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "/Cart", element: <Cart /> },
+      { path: "/*", element: <ErrorPage /> },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <div className="App">
-      <div className="wrapper">
-        <Header />
-        <div className="content">
-          <div className="container">
-            <div className="content__top">
-              <Categories />
-              <Sort />
-            </div>
-            <h2 className="content__title">Все пиццы</h2>
-            <div className="content__items">
-              {pizzas.map((pizza) => (
-                <PizzaBlock
-                  key={pizza.id}
-                  title={pizza.title}
-                  price={pizza.price}
-                  imageUrl={pizza.imageUrl}
-                  sizes={pizza.sizes}
-                  types={pizza.types}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
