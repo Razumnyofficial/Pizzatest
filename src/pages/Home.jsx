@@ -15,6 +15,7 @@ const Home = () => {
       .then((data) => {
         setPizzas(data);
         setIsLoading(false);
+        window.scrollTo(0, 0);
       });
   }, []);
 
