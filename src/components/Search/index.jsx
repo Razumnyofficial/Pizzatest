@@ -1,9 +1,9 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import { MyContext } from "../../App";
 import styles from "./Search.module.scss";
 
-const Search = ({ searchValue, setSearchValue }) => {
-  console.log(searchValue);
+const Search = () => {
+  const { searchValue, setSearchValue } = useContext(MyContext);
 
   function handleDelete() {
     setSearchValue("");

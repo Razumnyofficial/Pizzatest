@@ -1,11 +1,12 @@
 import Header from "../components/Header";
+
 // import { Outlet } from "react-router-dom";
 
-const HeaderPage = ({ searchValue, setSearchValue }) => {
+const HeaderPage = () => {
   return (
     <div className="App">
       <div className="wrapper">
-        <Header searchValue={searchValue} setSearchValue={setSearchValue} />
+        <Header />
       </div>
     </div>
   );

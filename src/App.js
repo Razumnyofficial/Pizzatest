@@ -8,19 +8,24 @@ import Cart from "./pages/Cart.jsx";
 import "./scss/app.scss";
 import NotFoundBlock from "./components/NotFoundBlock/index.jsx";
 
+export const MyContext = React.createContext();
+
 function App() {
   const [searchValue, setSearchValue] = React.useState("");
+  
 
   return (
     <div className="wrapper">
-      <HeaderPage searchValue={searchValue} setSearchValue={setSearchValue} />
-      <div className="content">
-        <Routes>
-          <Route path="/" element={<Home searchValue={searchValue} />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="*" element={<NotFoundBlock />} />
-        </Routes>
-      </div>
+      <MyContext.Provider value={{ searchValue, setSearchValue }}>
+        <HeaderPage />
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="*" element={<NotFoundBlock />} />
+          </Routes>
+        </div>
+      </MyContext.Provider>
     </div>
   );
 }
