@@ -1,20 +1,26 @@
 import React from "react";
 import { useState } from "react";
-function Sort({ sortType, setSortType }) {
-  const [isVisible, setIsVisible] = useState(false);
+import { useDispatch, useSelector } from "react-redux";
+import { setSort } from "../redux/slices/filterSlice";
 
-  const SORT_BY = [
-    { name: "популярности(desc)", sortProperty: "rating" },
-    { name: "популярности(asc)", sortProperty: "-rating" },
-    { name: "цене(desc)", sortProperty: "price" },
-    { name: "цене(asc)", sortProperty: "-price" },
-    { name: "алфавиту(desc)", sortProperty: "title" },
-    { name: "алфавиту(asc)", sortProperty: "-title" },
-  ];
+const SORT_BY = [
+  { name: "популярности(desc)", sortProperty: "rating" },
+  { name: "популярности(asc)", sortProperty: "-rating" },
+  { name: "цене(desc)", sortProperty: "price" },
+  { name: "цене(asc)", sortProperty: "-price" },
+  { name: "алфавиту(desc)", sortProperty: "title" },
+  { name: "алфавиту(asc)", sortProperty: "-title" },
+];
+
+function Sort() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sortType = useSelector((state) => state.filter.sort);
+  const dispatch = useDispatch();
 
   const onClickVisible = () => setIsVisible((isVisible) => !isVisible);
-  const onClickSort = (i) => {
-    setSortType(i);
+
+  const onClickSort = (obj) => {
+    dispatch(setSort(obj));
     setIsVisible(false);
   };
 

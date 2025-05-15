@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-
 import HeaderPage from "./pages/HeaderPage";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart.jsx";
@@ -12,10 +11,10 @@ export const MyContext = React.createContext();
 
 function App() {
   const [searchValue, setSearchValue] = React.useState("");
-  
 
   return (
     <div className="wrapper">
+      <div></div>
       <MyContext.Provider value={{ searchValue, setSearchValue }}>
         <HeaderPage />
         <div className="content">

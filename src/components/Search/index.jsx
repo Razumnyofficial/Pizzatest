@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { MyContext } from "../../App";
 import styles from "./Search.module.scss";
 
@@ -7,7 +7,12 @@ const Search = () => {
 
   function handleDelete() {
     setSearchValue("");
+    document.querySelector("input").focus();
   }
+
+  useEffect(() => {
+    console.log(document.querySelector("input"));
+  }, []);
 
   return (
     <div className={styles.root}>
