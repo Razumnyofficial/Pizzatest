@@ -1,18 +1,34 @@
-import React, { useContext, useEffect } from "react";
+import React, { useCallback, useContext, useRef, useState } from "react";
 import { MyContext } from "../../App";
 import styles from "./Search.module.scss";
+import debounce from "lodash.debounce";
 
 const Search = () => {
-  const { searchValue, setSearchValue } = useContext(MyContext);
+  const [value, setValue] = useState("");
+  const { setSearchValue } = useContext(MyContext);
+  const inputRef = useRef();
+
+  const onChangeInput = (event) => {
+    setValue(event.target.value);
+    updateSearchValue(event.target.value);
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const updateSearchValue = useCallback(
+    debounce((str) => {
+      setSearchValue(str);
+      // console.log(str);
+    }, 250),
+    []
+  );
 
   function handleDelete() {
     setSearchValue("");
-    document.querySelector("input").focus();
+    setValue("");
+    inputRef.current.focus();
   }
 
-  useEffect(() => {
-    console.log(document.querySelector("input"));
-  }, []);
+  console.log(inputRef);
 
   return (
     <div className={styles.root}>
@@ -31,12 +47,13 @@ const Search = () => {
         <path d="M344.5,298c15-23.6,23.8-51.6,23.8-81.7c0-84.1-68.1-152.3-152.1-152.3C132.1,64,64,132.2,64,216.3  c0,84.1,68.1,152.3,152.1,152.3c30.5,0,58.9-9,82.7-24.4l6.9-4.8L414.3,448l33.7-34.3L339.5,305.1L344.5,298z M301.4,131.2  c22.7,22.7,35.2,52.9,35.2,85c0,32.1-12.5,62.3-35.2,85c-22.7,22.7-52.9,35.2-85,35.2c-32.1,0-62.3-12.5-85-35.2  c-22.7-22.7-35.2-52.9-35.2-85c0-32.1,12.5-62.3,35.2-85c22.7-22.7,52.9-35.2,85-35.2C248.5,96,278.7,108.5,301.4,131.2z" />
       </svg>
       <input
+        ref={inputRef}
         className={styles.input}
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
+        value={value}
+        onChange={onChangeInput}
         placeholder="Поиск пицц .."
       />
-      {searchValue && (
+      {value && (
         <div className={styles.clear} onClick={handleDelete}>
           <svg
             style={{ enableBackground: "new 0 0 24 24" }}
