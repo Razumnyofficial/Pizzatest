@@ -1,7 +1,32 @@
+import React from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setSort } from "../redux/slices/filterSlice";
+
+const SORT_BY = [
+  { name: "популярности(desc)", sortProperty: "rating" },
+  { name: "популярности(asc)", sortProperty: "-rating" },
+  { name: "цене(desc)", sortProperty: "price" },
+  { name: "цене(asc)", sortProperty: "-price" },
+  { name: "алфавиту(desc)", sortProperty: "title" },
+  { name: "алфавиту(asc)", sortProperty: "-title" },
+];
+
 function Sort() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sortType = useSelector((state) => state.filter.sort);
+  const dispatch = useDispatch();
+
+  const onClickVisible = () => setIsVisible((isVisible) => !isVisible);
+
+  const onClickSort = (obj) => {
+    dispatch(setSort(obj));
+    setIsVisible(false);
+  };
+
   return (
-    <div class="sort">
-      <div class="sort__label">
+    <div className="sort">
+      <div className="sort__label">
         <svg
           width="10"
           height="6"
@@ -15,15 +40,25 @@ function Sort() {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span>популярности</span>
+        <span onClick={onClickVisible}>{sortType.name}</span>
       </div>
-      <div class="sort__popup">
-        <ul>
-          <li class="active">популярности</li>
-          <li>цене</li>
-          <li>алфавиту</li>
-        </ul>
-      </div>
+      {isVisible && (
+        <div className="sort__popup">
+          <ul>
+            {SORT_BY.map((obj, i) => (
+              <li
+                key={i}
+                onClick={() => onClickSort(obj)}
+                className={
+                  sortType.sortProperty === obj.sortProperty ? "active" : ""
+                }
+              >
+                {obj.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

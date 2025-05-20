@@ -1,39 +1,54 @@
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import HeaderPage from "./pages/HeaderPage";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart.jsx";
+
 import "./scss/app.scss";
-import Header from "./components/Header";
-import Categories from "./components/Categories";
-import Sort from "./components/Sort";
-import PizzaBlock from "./components/PizzaBlock";
+import NotFoundBlock from "./components/NotFoundBlock/index.jsx";
+
+export const MyContext = React.createContext();
 
 function App() {
+  const [searchValue, setSearchValue] = React.useState("");
+
   return (
-    <div className="App">
-      <h1>React Pizza</h1>
-      <div class="wrapper">
-        <Header />
-        <div class="content">
-          <div class="container">
-            <div class="content__top">
-              <Categories />
-              <Sort />
-            </div>
-            <h2 class="content__title">Все пиццы</h2>
-            <div class="content__items">
-              <PizzaBlock
-                title="Чизбургер-пицца"
-                price="395"
-                imageUrl="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-              />
-              <PizzaBlock
-                title="Пепперони"
-                price="290"
-                imageUrl="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-              />
-            </div>
-          </div>
+    <div className="wrapper">
+      <div></div>
+      <MyContext.Provider value={{ searchValue, setSearchValue }}>
+        <HeaderPage />
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="*" element={<NotFoundBlock />} />
+          </Routes>
         </div>
-      </div>
+      </MyContext.Provider>
     </div>
   );
 }
+
+//   const router = createBrowserRouter([
+//     {
+//       path: "/",
+//       element: (
+//         <HeaderPage searchValue={searchValue} setSearchValue={setSearchValue} />
+//       ),
+//       // errorElement: <ErrorPage />,
+//       children: [
+//         { index: true, element: <Home /> },
+//         { path: "/Cart", element: <Cart /> },
+//         { path: "/*", element: <ErrorPage /> },
+//       ],
+//     },
+//   ]);
+
+//   return (
+//     <>
+//       <RouterProvider router={router} />;
+//     </>
+//   );
+// }
 
 export default App;
