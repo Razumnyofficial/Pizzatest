@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSort } from "../redux/slices/filterSlice";
+import { useRef } from "react";
 
-const SORT_BY = [
+export const sortList = [
   { name: "популярности(desc)", sortProperty: "rating" },
   { name: "популярности(asc)", sortProperty: "-rating" },
   { name: "цене(desc)", sortProperty: "price" },
@@ -13,9 +14,10 @@ const SORT_BY = [
 ];
 
 function Sort() {
-  const [isVisible, setIsVisible] = useState(false);
   const sortType = useSelector((state) => state.filter.sort);
   const dispatch = useDispatch();
+  const sortRef = useRef();
+  const [isVisible, setIsVisible] = useState(false);
 
   const onClickVisible = () => setIsVisible((isVisible) => !isVisible);
 
@@ -24,8 +26,24 @@ function Sort() {
     setIsVisible(false);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const path = event.target || event.srcElement;
+      const isClickInside = sortRef.current && sortRef.current.contains(path);
+
+      if (!isClickInside) {
+        setIsVisible(false);
+      }
+    };
+
+    document.body.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.body.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"
@@ -45,7 +63,7 @@ function Sort() {
       {isVisible && (
         <div className="sort__popup">
           <ul>
-            {SORT_BY.map((obj, i) => (
+            {sortList.map((obj, i) => (
               <li
                 key={i}
                 onClick={() => onClickSort(obj)}
